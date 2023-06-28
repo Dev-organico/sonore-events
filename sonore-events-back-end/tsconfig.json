@@ -9,6 +9,9 @@
     "esModuleInterop": true,
     "rootDirs": ["src", "tests"],
     "baseUrl": "src",
+    "paths": {
+      "@/": [""]
+    },
     "plugins": [
       {
         "transform": "typescript-transform-paths"
