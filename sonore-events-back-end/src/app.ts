@@ -5,7 +5,7 @@ import cors from "cors";
 import { loadEnv } from "config/envs";
 import { connectDb, disconnectDB } from "config/database";
 
-loadEnv();
+//loadEnv();
 
 import { handleApplicationErrors } from "middlewares/error-handling-middleware";
 import { signUpRouter } from "routes/sign-up-routes";
