@@ -1,0 +1,9 @@
+Nome do Orçamento: {{nome}}
+Descrição: {{descricao}}
+
+Equipamentos:
+{{#equipamentos}}
+- {{nome}} ({{quantidade}} x R$ {{preco}}) = R$ {{subtotal}}
+{{/equipamentos}}
+
+Valor Total: R$ {{valorTotal}}

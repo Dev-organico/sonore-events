@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique @db.VarChar(255)
+  password  String      @db.VarChar(255)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Session   Session[]
+  Equipment Equipment[]
+  Budgets   Budgets[]
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Equipment {
+  id                Int                   @id @default(autoincrement())
+  userId            Int
+  name              String
+  type              EquipmentType
+  price             Int
+  quantity          Int
+  image             String
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  User              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  LinkedEquipment   LinkedEquipment[]
+  EquipmentToBudget EquipmentsToBudgets[]
+}
+
+model LinkedEquipment {
+  id          Int       @id @default(autoincrement())
+  equipmentId Int
+  name        String
+  price       Int
+  quantity    Int
+  image       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  Equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+}
+
+model Budgets {
+  id                Int                   @id @default(autoincrement())
+  name              String
+  comment           String
+  userId            Int
+  finalPrice        Int
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  User              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  EquipmentToBudget EquipmentsToBudgets[]
+}
+
+model EquipmentsToBudgets {
+  id           Int       @id @default(autoincrement())
+  equipmentId  Int
+  budgetsId    Int
+  rentQuantity Int
+  Budgets      Budgets   @relation(fields: [budgetsId], references: [id], onDelete: Cascade)
+  Equipment    Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+}
+
+enum EquipmentType {
+  AUDIO
+  VIDEO
+  LUZ
+}
