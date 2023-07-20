@@ -1,11 +1,11 @@
-# Sonore-events-front-end
+ # Sonore-events-front-end
 
 Front-end for SonoreEvents, an application to manage sound equipments and create budgets.
 
 ## About
 
-SonoreEvents is a web browser application with which you can manage the quipemnts by adding,
-deleting and updating them. You can also create budgets and download them in the format docx.
+SonoreEvents is a web browser application with which you can manage the equipemnts by adding,
+deleting and updating them. You can also create budgets and download them in docx format.
 
 <img src="https://s11.gifyu.com/images/SWBiu.gif">
 
