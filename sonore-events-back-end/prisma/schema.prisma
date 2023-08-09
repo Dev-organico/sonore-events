@@ -82,4 +82,8 @@ enum EquipmentType {
   AUDIO
   VIDEO
   LUZ
+  PAINEL
+  STREAMING
+  INFORMATICA
+  ESTRUTURA
 }
